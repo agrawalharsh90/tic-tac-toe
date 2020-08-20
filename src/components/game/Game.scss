@@ -1,11 +1,6 @@
 .game {
   display: flex;
-  flex-direction: row;
-  font: 14px "Century Gothic", Futura, sans-serif;
-  margin: 20px;
-
-  .game-info {
-    margin-left: 20px;
-  }
+  flex-direction: column;
+  height: 100vh;
 }
 

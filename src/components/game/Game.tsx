@@ -1,13 +1,14 @@
 import React, {useState} from "react";
 import {Board} from "../board/Board";
+import {Typography} from "@material-ui/core";
+import './Game.scss';
 
 const Game: React.FC = () => {
     const [data, setData] = useState({
-
         squares: Array(9).fill(null),
-
         xIsNext: true
     });
+
     const calculateWinner: Function = (squares: Array<number>) => {
         const lines = [
             [0, 1, 2],
@@ -27,17 +28,14 @@ const Game: React.FC = () => {
         }
         return null;
     }
-    const handleClick: Function = (i: number) => {
-
+    const handleClick = (i: number) => {
         const squares = data.squares.slice();
         if (calculateWinner(squares) || squares[i]) {
             return;
         }
         squares[i] = data.xIsNext ? "X" : "O";
         setData({
-
             squares: squares,
-
             xIsNext: !data.xIsNext
         });
     }
@@ -52,19 +50,12 @@ const Game: React.FC = () => {
         status = "Next player: " + (data.xIsNext ? "X" : "O");
     }
 
-
     return (
         <div className="game">
-            <div className="game-info">
-                <div>{status}</div>
-            </div>
-            <div className="game-board">
-                <Board
-                    squares={data.squares}
-                    onClick={handleClick}
-                />
-            </div>
-
+            <Typography style={{margin: 10}}>{status}</Typography>
+            <Board
+                squares={data.squares}
+                onClick={handleClick}/>
         </div>
     );
 }
